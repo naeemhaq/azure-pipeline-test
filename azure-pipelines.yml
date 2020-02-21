@@ -12,16 +12,15 @@ pool:
 variables:
 - group: versions
   # define b as a counter with the prefix as variable a, and seed as 10.
-- name: minor1
-  value:  $[counter(variables['major1'], 10)]
+#- name: minor1
+#  value:  $[counter(variables['major1'], 10)]
 
 steps:
 - script: |
     echo $(minor1)
     echo $(major1)
+    echo $(sic-version)
+    echo '---------------'
+    echo $sic-version $minor1
   displayName: 'Minor version'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
