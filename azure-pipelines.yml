@@ -26,6 +26,7 @@ steps:
   displayName: 'Minor version'
 
 #https://cloudarchitected.com/2019/10/updating-variable-groups-from-an-azure-devops-pipeline/
+# https://developercommunity.visualstudio.com/content/problem/639518/update-single-variable-in-variable-group-which-has.html
 - bash: |
      
      $baseUri = "https://dev.azure.com/BIA-Platform/${prjid}/_apis/distributedtask/variablegroups/237?api-version=5.0-preview.1"
