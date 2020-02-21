@@ -12,8 +12,8 @@ pool:
 variables:
 - group: versions
   # define b as a counter with the prefix as variable a, and seed as 10.
-#- name: minor1
-#  value:  $[counter(variables['major1'], 10)]
+- name: minor1
+  value:  $[counter(variables['major1'], 10)]
 
 steps:
 - script: |
@@ -21,6 +21,5 @@ steps:
     echo $(major1)
     echo $(sic-version)
     echo '---------------'
-    echo $sic-version $minor1
   displayName: 'Minor version'
 
