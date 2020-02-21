@@ -25,7 +25,10 @@ steps:
     echo '---------------'
   displayName: 'Minor version'
 
+#https://cloudarchitected.com/2019/10/updating-variable-groups-from-an-azure-devops-pipeline/
 - bash: |
+     
+     $baseUri = "https://dev.azure.com/BIA-Platform/${prjid}/_apis/distributedtask/variablegroups/237?api-version=5.0-preview.1"
      curl -fL -XPUT -H "Authorization:Bearer $(System.AccessToken)" -H "Content-Type:application/json" \
      -d '{
        "id": "$(FOO_VARIABLE_GROUP_ID)",
