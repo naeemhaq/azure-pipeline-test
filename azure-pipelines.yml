@@ -25,3 +25,23 @@ steps:
     echo '---------------'
   displayName: 'Minor version'
 
+- bash: |
+     curl -fL -XPUT -H "Authorization:Bearer $(System.AccessToken)" -H "Content-Type:application/json" \
+     -d '{
+       "id": "$(FOO_VARIABLE_GROUP_ID)",
+       "type": "Vsts",
+       "name": "Foo",
+       "variables": {
+         "FOO_VARIABLE_GROUP_ID": {
+           "isSecret": false,
+           "value": "$(FOO_VARIABLE_GROUP_ID)"
+         },
+         "FOO": {
+           "isSecret": false,
+           "value": "$(valueIWantToSet)"
+         }
+       }
+     }' \
+     $(System.TeamFoundationCollectionUri)/$(System.TeamProject)/_apis/distributedtask/variablegroups/$(FOO_VARIABLE_GROUP_ID)?api-version=5.0-preview.1
+  displayName: 'Set variable in variable group to current foo'
+
