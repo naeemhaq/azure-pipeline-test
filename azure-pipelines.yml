@@ -9,9 +9,17 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
+variables:
+- group: versions
+  # define b as a counter with the prefix as variable a, and seed as 10.
+- name: minor1
+  value:  $[counter(variables['major1'], 10)]
+
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- script: |
+    echo $(minor1)
+    echo $(major1)
+  displayName: 'Minor version'
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
