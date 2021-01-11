@@ -10,7 +10,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-- group: versions
+
   # define b as a counter with the prefix as variable a, and seed as 10.
 - name: minor1
   value:  $[counter(variables['major1'], 10)]
