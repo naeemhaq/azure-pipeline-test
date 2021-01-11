@@ -52,9 +52,9 @@ steps:
           Write-Output "##vso[task.setvariable variable=$keyName;isOutput=true]$value"
       }
   
-- bash: |
-        echo "sqlServerName is $(sqlServerName)
-        echo "databaseName from variable $(databaseName)" 
+- script: |
+    echo "sqlServerName is $(sqlServerName)"
+    echo "databaseName from variable $(databaseName)" 
 
 #https://cloudarchitected.com/2019/10/updating-variable-groups-from-an-azure-devops-pipeline/
 # https://developercommunity.visualstudio.com/content/problem/639518/update-single-variable-in-variable-group-which-has.html
