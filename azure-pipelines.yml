@@ -29,7 +29,18 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      $armOutput = @'{"sqlServerName": {"value" : "[some sql server name].database.windows.net","type": "string"},"databaseName": {"value" : "[some sql db name]","type": "string"}}'@
+      $armOutput = @'
+      {
+          "sqlServerName": {
+      	    "value" : "[some sql server name].database.windows.net",
+              "type": "string"
+          },
+          "databaseName": {
+      		"value" : "[some sql db name]",
+              "type": "string"
+          }
+      }
+      '@
       $armOutputObj = $armOutput | convertfrom-json
       $armOutputObj.PSObject.Properties | ForEach-Object {
           $keyname = $_.Name
