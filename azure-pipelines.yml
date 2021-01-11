@@ -51,7 +51,6 @@ steps:
           ## Creates an output variable
           Write-Output "##vso[task.setvariable variable=$keyName;isOutput=true]$value"
       }
-      failOnStderr: true
   
 - bash: |
         echo "sqlServerName is $(sqlServerName)
