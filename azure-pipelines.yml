@@ -65,17 +65,17 @@ steps:
      $baseUri = "https://dev.azure.com/BIA-Platform/${prjid}/_apis/distributedtask/variablegroups/237?api-version=5.0-preview.1"
      curl -fL -XPUT -H "Authorization:Bearer $(System.AccessToken)" -H "Content-Type:application/json" \
      -d '{
-       "id": "$(FOO_VARIABLE_GROUP_ID)",
+       "id": "4",
        "type": "Vsts",
-       "name": "Foo",
+       "name": "updateGroup",
        "variables": {
-         "FOO_VARIABLE_GROUP_ID": {
+         "test": {
            "isSecret": false,
-           "value": "$(FOO_VARIABLE_GROUP_ID)"
+           "value": "$(sqlServerName)"
          },
-         "FOO": {
+         "databaseName": {
            "isSecret": false,
-           "value": "$(valueIWantToSet)"
+           "value": "$(databaseName)"
          }
        }
      }' \
