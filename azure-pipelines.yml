@@ -56,6 +56,12 @@ steps:
     echo "sqlServerName is $(sqlServerName)"
     echo "databaseName from variable $(databaseName)" 
 
+- task: variableupdater@1
+  inputs:
+    VariableGroupId: 'updateGroup'
+    VariableName: 'test'
+    NewValue: $(sqlServerName)
+  
 #https://cloudarchitected.com/2019/10/updating-variable-groups-from-an-azure-devops-pipeline/
 # https://developercommunity.visualstudio.com/content/problem/639518/update-single-variable-in-variable-group-which-has.html
 - bash: |
