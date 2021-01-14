@@ -10,7 +10,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-
+- group: updateGroup
   # define b as a counter with the prefix as variable a, and seed as 10.
 - name: minor1
   value:  $[counter(variables['major1'], 10)]
@@ -50,17 +50,13 @@ steps:
       		
           ## Creates an output variable
           Write-Output "##vso[task.setvariable variable=$keyName;isOutput=true]$value"
+          Write-Host "##vso[task.setvariable variable=test;]testvalue"
       }
   
 - script: |
     echo "sqlServerName is $(sqlServerName)"
     echo "databaseName from variable $(databaseName)" 
 
-- task: variableupdater@1
-  inputs:
-    VariableGroupId: 'updateGroup'
-    VariableName: 'test'
-    NewValue: $(sqlServerName)
   
 #https://cloudarchitected.com/2019/10/updating-variable-groups-from-an-azure-devops-pipeline/
 # https://developercommunity.visualstudio.com/content/problem/639518/update-single-variable-in-variable-group-which-has.html
