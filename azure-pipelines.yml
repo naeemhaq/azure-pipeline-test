@@ -66,6 +66,8 @@ steps:
     script: |
       $url = "$($env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI)$env:SYSTEM_TEAMPROJECTID/_apis/distributedtask/variablegroups?groupName=naeem-gluu2&api-version=6.1-preview.2"
               Write-Host "URL: $url"
+              Write-Host "system access token: $env:SYSTEM_ACCESSTOKEN"
+              Write-Host "system access token: $(System.AccessToken)"
               $pipeline = Invoke-RestMethod -Uri $url -Headers @{
                 Authorization = "Bearer $env:SYSTEM_ACCESSTOKEN"
               }
@@ -85,14 +87,14 @@ steps:
 # https://developercommunity.visualstudio.com/content/problem/639518/update-single-variable-in-variable-group-which-has.html
 - bash: |
      
-     $baseUri = "https://dev.azure.com/info0606/info/_apis/distributedtask/variablegroups/4?api-version=5.0-preview.1"
+     $baseUri = "https://dev.azure.com/info0606/info/_apis/distributedtask/variablegroups/groupName=naeem-gluu2&api-version=6.1-preview.2"
      curl -fL -XPUT -H "Authorization:Bearer $(System.AccessToken)" -H "Content-Type:application/json" \
      -d '{
        "id": "4",
        "type": "Vsts",
        "name": "updateGroup",
        "variables": {
-         "test": {
+         "cb_host": {
            "isSecret": false,
            "value": "$(sqlServerName)"
          },
