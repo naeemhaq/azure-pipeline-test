@@ -57,7 +57,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      $url = "$($env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI)$env:SYSTEM_TEAMPROJECTID/_apis/build/definitions/$($env:SYSTEM_DEFINITIONID)?api-version=5.0"
+      $url = "$($env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI)$env:SYSTEM_TEAMPROJECTID/info/_apis/build/definitions/$($env:SYSTEM_DEFINITIONID)?api-version=5.0"
               Write-Host "URL: $url"
               $pipeline = Invoke-RestMethod -Uri $url -Headers @{
                   Authorization = "Bearer $env:SYSTEM_ACCESSTOKEN"
@@ -76,7 +76,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      #$url = "$($env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI)$env:SYSTEM_TEAMPROJECTID/_apis/distributedtask/variablegroups/5?api-version=5.0-preview.1"
+      #$url = "$($env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI)$env:SYSTEM_TEAMPROJECTID/info/_apis/distributedtask/variablegroups/5?api-version=5.0-preview.1"
               Write-Host "URL: $url"
               $pipeline = Invoke-RestMethod -Uri $url -Headers @{
                   Authorization = "Bearer $env:SYSTEM_ACCESSTOKEN"
