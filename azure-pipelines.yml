@@ -69,8 +69,29 @@ steps:
 - script: |
     echo "sqlServerName is $(sqlServerName)"
     echo "databaseName from variable $(databaseName)" 
-    echo $SYSTEM_ACCESSTOKEN
+    echo $env:SYSTEM_ACCESSTOKEN
     echo $(System.AccessToken)
+
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      #$url = "$($env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI)$env:SYSTEM_TEAMPROJECTID/_apis/distributedtask/variablegroups/5?api-version=5.0-preview.1"
+              Write-Host "URL: $url"
+              $pipeline = Invoke-RestMethod -Uri $url -Headers @{
+                  Authorization = "Bearer $env:SYSTEM_ACCESSTOKEN"
+              }
+              Write-Host "Pipeline = $($pipeline | ConvertTo-Json -Depth 100)"
+      # Update an existing variable named cb_host to its new value 1035
+        $pipeline.variables.cb_host.value = "1035"
+
+        ####****************** update the modified object **************************
+        $json = @($pipeline) | ConvertTo-Json -Depth 99
+        $updatedef = Invoke-RestMethod -Uri $url -Method Put -Body $json -ContentType "application/json" -Headers @{Authorization = "Bearer $env:SYSTEM_ACCESSTOKEN"}
+        write-host "==========================================================" 
+        Write-host "The value of Varialbe 'cb_host' is updated to" $updatedef.variables.v1030.value
+        write-host "=========================================================="
+
 
 #https://cloudarchitected.com/2019/10/updating-variable-groups-from-an-azure-devops-pipeline/
 # https://developercommunity.visualstudio.com/content/problem/639518/update-single-variable-in-variable-group-which-has.html
