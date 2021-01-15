@@ -46,10 +46,10 @@ steps:
           $keyname = $_.Name
           $value = $_.Value.value
           ## Creates a standard pipeline variable
-          Write-Output "##vso[task.setvariable variable=$keyName;]$value"
+          Write-Output = "##vso[task.setvariable variable=$keyName;]$value"
       		
           ## Creates an output variable
-          Write-Output "##vso[task.setvariable variable=$keyName;isOutput=true]$value"
+          Write-Output = "##vso[task.setvariable variable=$keyName;isOutput=true]$value"
           Write-Host "##vso[task.setvariable variable=test;]testvalue"
       }
   
