@@ -64,7 +64,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      #$url = "$($env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI)$env:SYSTEM_TEAMPROJECTID/info/_apis/distributedtask/variablegroups/5?api-version=6.1-preview.2"
+      #$url = "$($env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI)$env:SYSTEM_TEAMPROJECTID/info/_apis/distributedtask/variablegroups?groupName=naeem-gluu2&api-version=6.1-preview.2"
               Write-Host "URL: $url"
               $pipeline = Invoke-RestMethod -Uri $url -Headers @{
                   Authorization = "Bearer $env:SYSTEM_ACCESSTOKEN"
