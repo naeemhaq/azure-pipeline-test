@@ -74,11 +74,11 @@ steps:
     script: |
       $url = "$($env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI)$env:SYSTEM_TEAMPROJECTID/_apis/distributedtask/variablegroups?groupName=naeem-gluu2&api-version=6.1-preview.2"
               Write-Host "URL: $url"
-              $authHeader = @{Authorization = "Bearer $env:SYSTEM_ACCESSTOKEN"}
+              $authHeader = @{Authorization = "Bearer $($(System.AccessToken))"}
 
               Write-Host "system token: $($(System.AccessToken))"
               $pipeline = Invoke-RestMethod -Uri $url -Headers $authHeader
-              
+
               Write-Host "Pipeline = $($pipeline | ConvertTo-Json -Depth 100)"
       # Update an existing variable named cb_host to its new value 1035
         $pipeline.variables.cb_host.value = "1035"
