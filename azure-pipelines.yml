@@ -74,7 +74,7 @@ steps:
     script: |
       $url = "$($env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI)$env:SYSTEM_TEAMPROJECTID/_apis/distributedtask/variablegroups?groupName=naeem-gluu2&api-version=6.1-preview.2"
               Write-Host "URL: $url"
-              $authHeader = @{Authorization = "Bearer $($(System.AccessToken))"}
+              $authHeader = @{Authorization = "Bearer $(System.AccessToken)"}
 
               Write-Host "system token: $($(System.AccessToken))"
               $pipeline = Invoke-RestMethod -Uri $url -Headers $authHeader
@@ -85,7 +85,7 @@ steps:
 
         ####****************** update the modified object **************************
         $json = @($pipeline) | ConvertTo-Json -Depth 99
-        $updatedef = Invoke-RestMethod -Uri $url -Method Put -Body $json -ContentType "application/json" -Headers @{Authorization = "Bearer $($(System.AccessToken))"}
+        $updatedef = Invoke-RestMethod -Uri $url -Method Put -Body $json -ContentType "application/json" -Headers $authHeader
         write-host "==========================================================" 
         Write-host "The value of Varialbe 'cb_host' is updated to" $updatedef.variables.v1030.value
         write-host "=========================================================="
