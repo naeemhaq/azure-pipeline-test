@@ -74,10 +74,10 @@ steps:
     script: |
       $url = "$($env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI)$env:SYSTEM_TEAMPROJECTID/_apis/distributedtask/variablegroups?groupName=naeem-gluu2&api-version=6.1-preview.2"
               Write-Host "URL: $url"
-              Write-Host "env access token: $($env:SYSTEM_ACCESSTOKEN)"
-              Write-Host "system access token: $($(System.AccessToken))"
+              Write-Host "env token: $($env:SYSTEM_ACCESSTOKEN)"
+              Write-Host "system token: $($(System.AccessToken))"
               $pipeline = Invoke-RestMethod -Uri $url -Headers @{
-                Authorization = "Bearer $env:SYSTEM_ACCESSTOKEN"
+                Authorization = "Bearer $($(System.AccessToken))"
               }
               Write-Host "Pipeline = $($pipeline | ConvertTo-Json -Depth 100)"
       # Update an existing variable named cb_host to its new value 1035
@@ -85,7 +85,7 @@ steps:
 
         ####****************** update the modified object **************************
         $json = @($pipeline) | ConvertTo-Json -Depth 99
-        $updatedef = Invoke-RestMethod -Uri $url -Method Put -Body $json -ContentType "application/json" -Headers @{Authorization = "Bearer $env:SYSTEM_ACCESSTOKEN"}
+        $updatedef = Invoke-RestMethod -Uri $url -Method Put -Body $json -ContentType "application/json" -Headers @{Authorization = "Bearer $($(System.AccessToken))"}
         write-host "==========================================================" 
         Write-host "The value of Varialbe 'cb_host' is updated to" $updatedef.variables.v1030.value
         write-host "=========================================================="
