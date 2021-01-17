@@ -66,48 +66,7 @@ steps:
      baseUri="https://dev.azure.com/info0606/info/_apis/distributedtask/variablegroups/5?api-version=6.1-preview.2"
      curl -fL -X PUT $baseUri -H "Authorization:Bearer $(System.AccessToken)" -H "Content-Type:application/json" \
      -d '{
-      "count": 1,
-      "value": [{
         "variables": {
-          "_artifactsLocation": {
-            "value": "https://raw.githubusercontent.com/naeemhaq/sign-in-canada/master/gluu-az-template/install_apache2.sh"
-          },
-          "adminPasswordOrKey": {
-            "value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj/dqF5h/DC4reWHV/Zhay2x1dmsi0xV9dnOXk8ZYW0Y9Kb1J08EV3FXoDwgMDouJ5Zdjnu1RcuJofGGGMMgazjbGxJt4xiiu7Nbqa2XPbxIp8ks705crxXo7IU5Sv5ETYn5Zb0VSCXnOdHVd8dKXMXYWzEpe3UEBMVG9ME4Bg+5bTQZ+ARaV8MCJ/Woi/9e7zkoF7VfuRmkCltDEo97hHKYo7ACutGMJAOT80LJDWNVGwFxYyKY+5BIEFcwSX/piw37w0xvC2k/oQ/33QOssXJ/bE2LSBdYbeoVa4YHhCqMbhZZ9ynkufZ8VBO8e4FsFg4CI/dEIKdXCJajOdKOXICQpABcURpt7biP+qidb+nsbsXkLL0esva+Z5TtdXhpW3EKT32CzULwE3T1poXLyYnIWaODCncpLh5Ifg9dHgpgVaPPsFC9aTH8SZ92CF9/0Fa8luIw0PE7zp2krshRvuOkvC115aUPB5rRNBqg+7uYlPffoUi7X9BktvEkZfG0U="
-          },
-          "adminUsername": {
-            "value": "gluu"
-          },
-          "commandToExec": {
-            "value": "sh install_apache.sh"
-          },
-          "homeTrafficRule": {
-            "value": "174.112.3.29/32"
-          },
-          "networkSecurityGroupName": {
-            "value": "naeem-sic-lab3"
-          },
-          "OSVersion": {
-            "value": "7_9"
-          },
-          "rgName": {
-            "value": "naeem-sic-lab3"
-          },
-          "setup-props": {
-            "value": "https://gluuccrgdiag.blob.core.windows.net/gluu-install/setup.properties?sp=r&st=2020-10-19T00:16:46Z&se=2020-10-20T08:16:46Z&spr=https&sv=2019-12-12&sr=b&sig=EXu%2BT27LwvXWo%2F%2FM%2FQ9GQ2Y5P3VVd9o7lYsqo%2Fl%2FC5U%3D"
-          },
-          "storageName": {
-            "value": "naeemsiclab3"
-          },
-          "subnetName": {
-            "value": "naeem-sic-lab3"
-          },
-          "virtualNetworkName": {
-            "value": "naeem-sic-lab3"
-          },
-          "vmName": {
-            "value": "nugluu3"
-          },
           "cb_host": {
             "value": "1035"
           }
@@ -130,7 +89,6 @@ steps:
         "modifiedOn": "2021-01-15T12:56:47.68Z",
         "isShared": false,
         "variableGroupProjectReferences": null
-        }]
       }'
   displayName: 'Set variable in variable group to current foo'
 
