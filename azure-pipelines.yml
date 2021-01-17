@@ -86,9 +86,10 @@ steps:
 
               ####****************** update the modified object **************************
               $json = @($pipeline) | ConvertTo-Json -Depth 99
-              $updatedef = Invoke-RestMethod -Uri $url -Method Put -Body $json -ContentType "application/json" -Headers $authHeader
+              Write-Host $json
+              $updatedef = Invoke-RestMethod -Method Put -Uri $url -Headers $authHeader -ContentType "application/json" -Body ([System.Text.Encoding]::UTF8.GetBytes($json))
               write-host "==========================================================" 
-              Write-host "The value of Varialbe 'cb_host' is updated to" $updatedef.variables.v1030.value
+              Write-host "The value of Varialbe 'cb_host' is updated to" $updatedef.value.variables.v1030.value
               write-host "=========================================================="
 
 
