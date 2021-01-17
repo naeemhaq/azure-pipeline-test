@@ -25,14 +25,6 @@ steps:
     echo '---------------'
   displayName: 'Minor version'
 
-- bash: echo This script could use $SYSTEM_ACCESSTOKEN
-  env:
-    SYSTEM_ACCESSTOKEN: $(System.AccessToken)
-
-- powershell: Write-Host "This is a script that could use $env:SYSTEM_ACCESSTOKEN"
-  env:
-    SYSTEM_ACCESSTOKEN: $(System.AccessToken)
-
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
@@ -75,9 +67,17 @@ steps:
      baseUri="https://dev.azure.com/info0606/info/_apis/distributedtask/variablegroups/5?api-version=6.1-preview.2"
      curl -fL -X PUT $baseUri -H "Authorization:Bearer $(System.AccessToken)" -H "Content-Type:application/json" \
      -d '{
-       "id": "5",
+       "description": "variable group for gluu",
        "type": "Vsts",
        "name": "naeem-gluu2",
+       "variableGroupProjectReferences": {
+           "description": "info",
+           "name": "info",
+           "projectReference": {
+               "id": "32be4b0e-237f-430d-9289-c5966a5c9829",
+               "name": "info"
+           }
+       },
        "variables": {
          "cb_host": {
            "isSecret": false,
