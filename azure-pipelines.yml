@@ -60,6 +60,30 @@ steps:
     echo "$SYSTEM_ACCESSTOKEN"
     echo "$(System.AccessToken)"
 
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      $putUrl = "$($env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI)$env:SYSTEM_TEAMPROJECTID/_apis/distributedtask/variablegroups/5?api-version=6.1-preview.2"
+      $url = "$($env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI)$env:SYSTEM_TEAMPROJECTID/_apis/distributedtask/variablegroups?groupName=naeem-gluu2&api-version=6.1-preview.2"
+              Write-Host "URL: $url"
+              $authHeader = @{Authorization = "Bearer $(System.AccessToken)"}
+
+              Write-Host "system token: $(System.AccessToken)"
+              $pipeline = Invoke-RestMethod -Uri $url -Headers $authHeader
+
+              Write-Host "Pipeline = $($pipeline | ConvertTo-Json -Depth 100)"
+              Write-Host $pipeline.value
+              # Update an existing variable named cb_host to its new value 1035
+              $pipeline.value.variables.cb_host.Value = "1035"
+
+              ####****************** update the modified object **************************
+              $json = @($pipeline) | ConvertTo-Json -Depth 99
+              Write-Host $json
+              $updatedef = Invoke-RestMethod -Method Put -Uri $putUrl -Headers $authHeader -ContentType "application/json" -Body ([System.Text.Encoding]::UTF8.GetBytes($json))
+              write-host "==========================================================" 
+              Write-host "The value of Varialbe 'cb_host' is updated to" $updatedef.value.variables.cb_host.value
+              write-host "=========================================================="
 
 #https://cloudarchitected.com/2019/10/updating-variable-groups-from-an-azure-devops-pipeline/
 # https://developercommunity.visualstudio.com/content/problem/639518/update-single-variable-in-variable-group-which-has.html
