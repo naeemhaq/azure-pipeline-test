@@ -75,6 +75,10 @@ steps:
               Write-Host $pipeline.value
               # Update an existing variable named cb_host to its new value 1035
               $pipeline.value.variables.cb_host.Value = "1035"
+              $pipeline.variableGroupProjectReferences.description.Value = ""
+              $pipeline.variableGroupProjectReferences.name.Value = "info"
+              $pipeline.variableGroupProjectReferences.projectReference.id.value = "32be4b0e-237f-430d-9289-c5966a5c9829"
+              $pipeline.variableGroupProjectReferences.projectReference.name.value = "info"
 
               ####****************** update the modified object **************************
               $json = @($pipeline) | ConvertTo-Json -Depth 99
