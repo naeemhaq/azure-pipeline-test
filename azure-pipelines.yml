@@ -86,6 +86,6 @@ steps:
          }
        }
      }' \
-     $(System.TeamFoundationCollectionUri)/$(System.TeamProject)/_apis/distributedtask/variablegroups/5?api-version=6.1-preview.2
+     $baseUri
   displayName: 'Set variable in variable group to current foo'
 
