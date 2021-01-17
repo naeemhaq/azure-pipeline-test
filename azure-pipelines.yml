@@ -76,7 +76,7 @@ steps:
               Write-Host "URL: $url"
               $authHeader = @{Authorization = "Bearer $(System.AccessToken)"}
 
-              Write-Host "system token: $($(System.AccessToken))"
+              Write-Host "system token: $(System.AccessToken)"
               $pipeline = Invoke-RestMethod -Uri $url -Headers $authHeader
 
               Write-Host "Pipeline = $($pipeline | ConvertTo-Json -Depth 100)"
