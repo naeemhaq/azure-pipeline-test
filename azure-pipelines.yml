@@ -63,13 +63,14 @@ steps:
 #https://cloudarchitected.com/2019/10/updating-variable-groups-from-an-azure-devops-pipeline/
 # https://developercommunity.visualstudio.com/content/problem/639518/update-single-variable-in-variable-group-which-has.html
 - bash: |
+     echo $(System.AccessToken)
      baseUri="https://dev.azure.com/info0606/info/_apis/distributedtask/variablegroups/5?api-version=6.1-preview.2"
      curl -fL -X PUT $baseUri -H "Authorization:Bearer $(System.AccessToken)" -H "Content-Type:application/json" \
      -d '{
         "variables": {
           "cb_host": {
             "value": "1035"
-          }
+            }
         },
         "id": 5,
         "type": "Vsts",
