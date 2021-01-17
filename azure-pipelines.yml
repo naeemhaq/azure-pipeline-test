@@ -80,6 +80,7 @@ steps:
               $pipeline = Invoke-RestMethod -Uri $url -Headers $authHeader
 
               Write-Host "Pipeline = $($pipeline | ConvertTo-Json -Depth 100)"
+              Write-Host $pipeline
       # Update an existing variable named cb_host to its new value 1035
         $pipeline.variables.cb_host.value = "1035"
 
