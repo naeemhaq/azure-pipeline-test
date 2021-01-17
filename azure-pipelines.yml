@@ -80,16 +80,16 @@ steps:
               $pipeline = Invoke-RestMethod -Uri $url -Headers $authHeader
 
               Write-Host "Pipeline = $($pipeline | ConvertTo-Json -Depth 100)"
-              Write-Host $pipeline
-      # Update an existing variable named cb_host to its new value 1035
-        $pipeline.variables.cb_host.value = "1035"
+              Write-Host $pipeline.value
+              # Update an existing variable named cb_host to its new value 1035
+              $pipeline.value.variables.cb_host.Value = "1035"
 
-        ####****************** update the modified object **************************
-        $json = @($pipeline) | ConvertTo-Json -Depth 99
-        $updatedef = Invoke-RestMethod -Uri $url -Method Put -Body $json -ContentType "application/json" -Headers $authHeader
-        write-host "==========================================================" 
-        Write-host "The value of Varialbe 'cb_host' is updated to" $updatedef.variables.v1030.value
-        write-host "=========================================================="
+              ####****************** update the modified object **************************
+              $json = @($pipeline) | ConvertTo-Json -Depth 99
+              $updatedef = Invoke-RestMethod -Uri $url -Method Put -Body $json -ContentType "application/json" -Headers $authHeader
+              write-host "==========================================================" 
+              Write-host "The value of Varialbe 'cb_host' is updated to" $updatedef.variables.v1030.value
+              write-host "=========================================================="
 
 
 #https://cloudarchitected.com/2019/10/updating-variable-groups-from-an-azure-devops-pipeline/
