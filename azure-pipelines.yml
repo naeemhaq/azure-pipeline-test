@@ -74,7 +74,7 @@ steps:
 - bash: |
      
      $baseUri = "https://dev.azure.com/info0606/info/_apis/distributedtask/variablegroups/5?api-version=6.1-preview.2"
-     curl -fL -X PUT -H "Authorization:Bearer $(System.AccessToken)" -H "Content-Type:application/json" \
+     curl -fL -X PUT $baseUri -H "Authorization:Bearer $(System.AccessToken)" -H "Content-Type:application/json" \
      -d '{
        "id": "5",
        "type": "Vsts",
@@ -85,7 +85,6 @@ steps:
            "value": "$(sqlServerName)"
          }
        }
-     }' \
-      $baseUri
+     }'
   displayName: 'Set variable in variable group to current foo'
 
