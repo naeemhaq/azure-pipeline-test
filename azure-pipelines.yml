@@ -66,7 +66,7 @@ steps:
     azureSubscription: 'Azure subscription 1(2)(a84771c4-d59c-4233-8c65-9e7c8e404eac)'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
-    inlineScript: 'echo $(token) | az devops login --organization https://dev.azure.com/info0606/ && az pipelines variable-group variable update --group-id 5  --name cb_host --value newValue2 --project info --organization https://dev.azure.com/info0606/'
+    inlineScript: 'echo $(token) | az devops login --organization https://dev.azure.com/info0606/ && az pipelines variable-group variable update --group-id 5  --name cb_host --value newValue4 --project info --organization https://dev.azure.com/info0606/'
     addSpnToEnvironment: true
     useGlobalConfig: true
 
